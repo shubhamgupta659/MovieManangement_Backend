@@ -24,16 +24,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Resource(name = "userService")
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
-	
-	@Value("${abc.ad}")
-	private String abcd;
+
 	
 	
 	@Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-		System.out.println(abcd);
 		return super.authenticationManagerBean();
     }
 
