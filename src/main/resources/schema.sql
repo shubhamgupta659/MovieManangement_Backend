@@ -43,3 +43,6 @@ hire_date date,
 is_permanent boolean,
 PRIMARY KEY(employee_id)
 );
+
+INSERT INTO `movie_management`.`register_user_details` (`user_id`, `first_name`, `last_name`, `user_name`, `user_email`, `user_password`, `role_id`) VALUES ('1', 'admin_fn', 'admin_ln', 'admin', 'admin@gmaail.com', '$2a$10$.b2gi8qOw3y.um/76aff6uP7jLrvwawwplAbqk8FSWlel2QFw.dmS', '1');
+
