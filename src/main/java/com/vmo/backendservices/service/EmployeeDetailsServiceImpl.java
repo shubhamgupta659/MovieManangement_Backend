@@ -33,4 +33,8 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService{
 		employeeRepository.deleteById(id);
 	}
 
+	public List<Object[]> getCountGroupByDepartment(){
+		List<Object[]> results = employeeRepository.findDepartmentWithCounts();
+		return results;
+	}
 }

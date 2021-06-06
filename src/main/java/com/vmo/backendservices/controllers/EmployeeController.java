@@ -47,4 +47,9 @@ public class EmployeeController {
 	public void delete(@PathVariable(value = "id") Integer id) {
 		employeeDetailsService.delete(id);
 	}
+
+	@RequestMapping(value = "/countByDepartment", method = RequestMethod.GET)
+	public List<Object[]> getCountGroupByDepartment() {
+		return employeeDetailsService.getCountGroupByDepartment();
+	}
 }

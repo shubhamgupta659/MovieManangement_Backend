@@ -15,4 +15,6 @@ public interface EmployeeDetailsService {
 	
 	void delete(Integer id);
 
+	public List<Object[]> getCountGroupByDepartment();
+
 }
