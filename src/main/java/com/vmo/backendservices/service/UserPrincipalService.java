@@ -22,7 +22,7 @@ public class UserPrincipalService implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return userLoginDeatils.getRolesInfo().stream()
-		.map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRoleName()))
+		.map(role -> new SimpleGrantedAuthority(role.getRoleName()))
 		.collect(Collectors.toList());
 	}
 
