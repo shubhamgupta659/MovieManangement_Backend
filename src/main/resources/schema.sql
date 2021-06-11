@@ -15,7 +15,6 @@ last_name varchar(255),
 user_name varchar(255),
 user_email varchar(255),
 user_password varchar(255),
-role_id bigint not null,
 PRIMARY KEY(user_id)
 );
 
@@ -44,7 +43,15 @@ is_permanent boolean,
 PRIMARY KEY(employee_id)
 );
 
-INSERT INTO `movie_management`.`register_user_details` (`user_id`, `first_name`, `last_name`, `user_name`, `user_email`, `user_password`, `role_id`) VALUES ('1', 'admin_fn', 'admin_ln', 'admin', 'admin@gmaail.com', '$2a$10$.b2gi8qOw3y.um/76aff6uP7jLrvwawwplAbqk8FSWlel2QFw.dmS', '1');
+create table files(
+file_id bigint AUTO_INCREMENT,
+file_name varchar(255),
+file_type varchar(255),
+file_data LONGBLOB,
+PRIMARY KEY(file_id)
+);
+
+INSERT INTO `movie_management`.`register_user_details` (`user_id`, `first_name`, `last_name`, `user_name`, `user_email`, `user_password`) VALUES ('1', 'admin_fn', 'admin_ln', 'admin', 'admin@gmaail.com', '$2a$10$.b2gi8qOw3y.um/76aff6uP7jLrvwawwplAbqk8FSWlel2QFw.dmS');
 
 INSERT INTO `movie_management`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '1');
 

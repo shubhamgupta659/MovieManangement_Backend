@@ -1,5 +1,6 @@
 package com.vmo.backendservices.service;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,5 +17,7 @@ public interface EmployeeDetailsService {
 	void delete(Integer id);
 
 	public List<Object[]> getCountGroupByDepartment();
+
+	public ByteArrayInputStream load();
 
 }
