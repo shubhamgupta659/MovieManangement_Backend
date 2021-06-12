@@ -66,7 +66,12 @@ public class FileController {
                 .body(new ByteArrayResource(dbFile.getData()));
     }
 
-    @GetMapping("/fileDētails")
+    @RequestMapping(value = "/removeFile/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable(value = "id") String id) {
+        dbFileStorageService.delete(id);
+    }
+
+    @GetMapping("/fileDetails")
     public List<DBFileDTO> listFile(){
         return dbFileStorageService.findFileDetails();
     }

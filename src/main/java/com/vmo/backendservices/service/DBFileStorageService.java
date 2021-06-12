@@ -42,6 +42,10 @@ public class DBFileStorageService {
                 .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }
 
+    public void delete(String id) {
+        dbFileRepository.deleteById(id);
+    }
+
     public List<DBFileDTO> findFileDetails(){
         List<Object[]> files= dbFileRepository.getFileDeatils();
         List<DBFileDTO> dbFileDTOS = new ArrayList<>();

@@ -46,4 +46,9 @@ public class MovieController {
 	public void delete(@PathVariable(value = "id") Integer id){
 		movieDetailsService.delete(id);
 	}
+
+	@RequestMapping(value = "/countByLanguage", method = RequestMethod.GET)
+	public List<Object[]> getCountGroupByLanguage() {
+		return movieDetailsService.getCountGroupByLanguage();
+	}
 	}

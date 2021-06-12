@@ -31,4 +31,9 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
 	public void delete(Integer id) {
 		movieRepository.deleteById(id);
 	}
+
+	public List<Object[]> getCountGroupByLanguage() {
+		List<Object[]> results = movieRepository.findLanguageWithCounts();
+		return results;
+	}
 }
