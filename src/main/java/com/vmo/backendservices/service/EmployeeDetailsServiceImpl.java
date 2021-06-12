@@ -41,7 +41,6 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
 
     public ByteArrayInputStream load() {
         List<EmployeeDetails> tutorials = employeeRepository.findAll();
-
         ByteArrayInputStream in = CSVHelper.tutorialsToCSV(tutorials);
         return in;
     }
