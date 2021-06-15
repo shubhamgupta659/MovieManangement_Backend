@@ -1,55 +1,57 @@
 use movie_management;
 
-create table movie_details(
-movie_id bigint AUTO_INCREMENT,
-movie_name varchar(255),
-movie_rating varchar(255),
-movie_language varchar(255),
-PRIMARY KEY(user_id)
-);
+CREATE TABLE `employee_details` (
+  `employee_id` int NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) DEFAULT NULL,
+  `department` int DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `hire_date` datetime DEFAULT NULL,
+  `is_permanent` bit(1) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`employee_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-create table register_user_details(
-user_id bigint AUTO_INCREMENT,
-first_name varchar(255),
-last_name varchar(255),
-user_name varchar(255),
-user_email varchar(255),
-user_password varchar(255),
-PRIMARY KEY(user_id)
-);
+CREATE TABLE `files` (
+  `file_id` bigint NOT NULL AUTO_INCREMENT,
+  `file_data` longblob,
+  `file_name` varchar(255) DEFAULT NULL,
+  `file_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`file_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-create table users_roles(
-user_id bigint AUTO_INCREMENT,
-role_id bigint not null,
-PRIMARY KEY(user_id)
-);
 
-create table register_user_role(
-role_id bigint AUTO_INCREMENT,
-role_name varchar(255),
-PRIMARY KEY(role_id)
-);
+CREATE TABLE `movie_details` (
+  `movie_id` bigint NOT NULL AUTO_INCREMENT,
+  `movie_language` varchar(255) DEFAULT NULL,
+  `movie_name` varchar(255) DEFAULT NULL,
+  `movie_rating` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`movie_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-create table employee_details(
-employee_id bigint AUTO_INCREMENT,
-full_name varchar(255),
-email varchar(255),
-mobile varchar(255),
-city varchar(255),
-gender varchar(255),
-department bigint,
-hire_date date,
-is_permanent boolean,
-PRIMARY KEY(employee_id)
-);
+CREATE TABLE `register_user_details` (
+  `user_id` bigint NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `user_password` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-create table files(
-file_id bigint AUTO_INCREMENT,
-file_name varchar(255),
-file_type varchar(255),
-file_data LONGBLOB,
-PRIMARY KEY(file_id)
-);
+CREATE TABLE `register_user_role` (
+  `role_id` bigint NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `users_roles` (
+  `user_id` bigint NOT NULL,
+  `role_id` bigint NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `FKm7inno19bameeaf0lse8roiim` (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 INSERT INTO `movie_management`.`register_user_details` (`user_id`, `first_name`, `last_name`, `user_name`, `user_email`, `user_password`) VALUES ('1', 'admin_fn', 'admin_ln', 'admin', 'admin@gmaail.com', '$2a$10$.b2gi8qOw3y.um/76aff6uP7jLrvwawwplAbqk8FSWlel2QFw.dmS');
 
