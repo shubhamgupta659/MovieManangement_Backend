@@ -37,12 +37,12 @@ public class DBFileStorageService {
         }
     }
 
-    public DBFile getFile(String fileId) {
+    public DBFile getFile(Long fileId) {
         return dbFileRepository.findById(fileId)
                 .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }
 
-    public void delete(String id) {
+    public void delete(Long id) {
         dbFileRepository.deleteById(id);
     }
 
@@ -51,7 +51,7 @@ public class DBFileStorageService {
         List<DBFileDTO> dbFileDTOS = new ArrayList<>();
         files.stream().forEach(data->{
             DBFileDTO dbFileDTO = new DBFileDTO();
-            dbFileDTO.setId(data[0].toString());
+            dbFileDTO.setId(Long.parseLong(data[0].toString()));
             dbFileDTO.setFileName(data[1].toString());
             dbFileDTO.setFileType(data[2].toString());
             dbFileDTOS.add(dbFileDTO);

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DBFileRepository extends JpaRepository<DBFile, String> {
+public interface DBFileRepository extends JpaRepository<DBFile, Long> {
 
-    @Query(value="select f.id, f.fileName ,f.fileType from DBFile f")
+    @Query(value = "select f.id, f.fileName ,f.fileType from DBFile f")
     List<Object[]> getFileDeatils();
 }

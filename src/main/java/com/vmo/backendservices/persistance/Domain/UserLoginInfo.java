@@ -15,7 +15,7 @@ public class UserLoginInfo {
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
-	private Integer userId;
+	private Long userId;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -32,7 +32,7 @@ public class UserLoginInfo {
 	@Column(name = "user_password")
 	private String password;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<UserRoleInfo> rolesInfo;
 

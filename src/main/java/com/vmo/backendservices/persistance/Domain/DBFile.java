@@ -10,10 +10,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "files")
 public class DBFile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "file_id" , updatable = false, nullable = false)
-    private String id;
+    private Long id;
 
     @Column(name = "file_name")
     private String fileName;

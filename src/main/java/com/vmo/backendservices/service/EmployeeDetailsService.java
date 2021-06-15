@@ -12,9 +12,9 @@ public interface EmployeeDetailsService {
 	
 	EmployeeDetails save(EmployeeDetails employeeDetails);
 	
-	Optional<EmployeeDetails> findOne(Integer id);
+	Optional<EmployeeDetails> findOne(Long id);
 	
-	void delete(Integer id);
+	void delete(Long id);
 
 	public List<Object[]> getCountGroupByDepartment();
 

@@ -26,11 +26,11 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
         return employeeRepository.save(employeeDetails);
     }
 
-    public Optional<EmployeeDetails> findOne(Integer id) {
+    public Optional<EmployeeDetails> findOne(Long id) {
         return employeeRepository.findById(id);
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         employeeRepository.deleteById(id);
     }
 

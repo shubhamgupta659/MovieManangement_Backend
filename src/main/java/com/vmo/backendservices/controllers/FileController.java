@@ -41,7 +41,7 @@ public class FileController {
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
-                .path(dbFile.getId())
+                .path(dbFile.getId()+"")
                 .toUriString();
 
         return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
@@ -57,7 +57,7 @@ public class FileController {
     }
 
     @GetMapping("/downloadFile/{id}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String id) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long id) {
         DBFile dbFile = dbFileStorageService.getFile(id);
 
         return ResponseEntity.ok()
@@ -67,7 +67,7 @@ public class FileController {
     }
 
     @RequestMapping(value = "/removeFile/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id") String id) {
+    public void delete(@PathVariable(value = "id") Long id) {
         dbFileStorageService.delete(id);
     }
 

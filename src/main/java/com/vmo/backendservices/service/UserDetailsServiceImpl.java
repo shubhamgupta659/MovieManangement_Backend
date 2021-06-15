@@ -41,13 +41,13 @@ public class UserDetailsServiceImpl implements UserDetailsService,UserDetailServ
 	}
 
 	@Override
-	public Optional<UserLoginInfo> findOne(Integer id) {
+	public Optional<UserLoginInfo> findOne(Long id) {
 		
 		return userRepository.findById(id);
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		userRepository.deleteById(id);	
 	}
 	

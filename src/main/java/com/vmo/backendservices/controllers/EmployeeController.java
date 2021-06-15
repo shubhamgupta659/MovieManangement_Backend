@@ -31,7 +31,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/findEmployee/{id}", method = RequestMethod.GET)
-    public Optional<EmployeeDetails> findOne(@PathVariable Integer id) {
+    public Optional<EmployeeDetails> findOne(@PathVariable Long id) {
         return employeeDetailsService.findOne(id);
     }
 
@@ -42,7 +42,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/removeEmployee/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id") Integer id) {
+    public void delete(@PathVariable(value = "id") Long id) {
         employeeDetailsService.delete(id);
     }
 

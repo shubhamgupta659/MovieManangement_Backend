@@ -11,9 +11,9 @@ public interface MovieDetailsService {
 	
 	MovieDetails save(MovieDetails movieDetails);
 	
-	Optional<MovieDetails> findOne(Integer id);
+	Optional<MovieDetails> findOne(Long id);
 	
-	void delete(Integer id);
+	void delete(Long id);
 
 	public List<Object[]> getCountGroupByLanguage();
 }

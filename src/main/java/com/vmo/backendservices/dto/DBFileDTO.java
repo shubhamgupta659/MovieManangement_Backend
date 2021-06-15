@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class DBFileDTO {
 
-    private String id;
+    private Long id;
     private String fileName;
     private String fileType;
 }
