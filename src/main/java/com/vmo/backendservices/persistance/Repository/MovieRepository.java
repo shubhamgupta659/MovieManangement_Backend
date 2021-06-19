@@ -17,4 +17,10 @@ public interface MovieRepository extends JpaRepository<MovieDetails, Long> {
     @Query("Select m.movieName from MovieDetails m where id = :movieId ")
     String findMovieById(@Param("movieId") Integer id);
 
+    @Query(value = "SELECT movie_name FROM movie_details order by movie_name ASC LIMIT 5",nativeQuery = true)
+    List<Object> searchMovie();
+
+    @Query(value = "SELECT movie_name FROM movie_details where movie_name like %:searchKey% order by movie_name ASC LIMIT 5",nativeQuery = true)
+    List<Object> searchMovieByKeyword(@Param("searchKey") String key);
+
 }

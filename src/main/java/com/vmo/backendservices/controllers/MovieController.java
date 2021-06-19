@@ -45,4 +45,14 @@ public class MovieController {
     public List<Object[]> getCountGroupByLanguage() {
         return movieDetailsService.getCountGroupByLanguage();
     }
+
+    @RequestMapping(value = "/searchByKey/", method = RequestMethod.GET)
+    public List<Object> searchMovie() {
+        return movieDetailsService.searchMovie();
+    }
+
+    @RequestMapping(value = "/searchByKey/{key}", method = RequestMethod.GET)
+    public List<Object> searchMovieByKeyword(@PathVariable(value = "key") String key) {
+        return movieDetailsService.searchMovieByKeyword(key);
+    }
 }

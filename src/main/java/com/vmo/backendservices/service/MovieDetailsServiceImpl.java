@@ -36,4 +36,14 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
         List<Object[]> results = movieRepository.findLanguageWithCounts();
         return results;
     }
+
+    public List<Object> searchMovie() {
+        List<Object> results = movieRepository.searchMovie();
+        return results;
+    }
+
+    public List<Object> searchMovieByKeyword(String key) {
+        List<Object> results = movieRepository.searchMovieByKeyword(key);
+        return results;
+    }
 }
