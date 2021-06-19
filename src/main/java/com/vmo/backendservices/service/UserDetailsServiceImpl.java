@@ -1,8 +1,13 @@
 package com.vmo.backendservices.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import com.vmo.backendservices.persistance.Domain.UserRoleInfo;
+import com.vmo.backendservices.persistance.Domain.UserRoles;
+import com.vmo.backendservices.persistance.Repository.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService,UserDetailServ
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	UserRolesRepository rolesRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,7 +45,19 @@ public class UserDetailsServiceImpl implements UserDetailsService,UserDetailServ
 
 	@Override
 	public UserLoginInfo save(UserLoginInfo userLoginInfo) {
-		return userRepository.save(userLoginInfo);
+		UserLoginInfo loginInfo= userRepository.save(userLoginInfo);
+		UserRoles roles = new UserRoles();
+		roles.setUserId(loginInfo.getUserId());
+		roles.setRoleId(1L);
+		//rolesRepository.save(roles);
+		Set<UserRoleInfo> userRoleInfos = new HashSet<>();
+		UserRoleInfo roleInfo = new UserRoleInfo();
+		roleInfo.setRoleId(2L);
+		roleInfo.setRoleName("USER");
+		userRoleInfos.add(roleInfo);
+		loginInfo.setRolesInfo(userRoleInfos);
+		return loginInfo;
+
 	}
 
 	@Override

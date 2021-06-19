@@ -17,7 +17,7 @@ public class EmployeeDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "employee_id", updatable = false, nullable = false)
-    private Integer employeeId;
+    private Long employeeId;
 
     @Column(name = "full_name")
     private String fullName;

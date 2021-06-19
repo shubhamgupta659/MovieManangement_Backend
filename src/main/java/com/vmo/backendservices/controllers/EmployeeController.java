@@ -36,7 +36,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/updateEmployee/{id}", method = RequestMethod.PUT)
-    public EmployeeDetails update(@PathVariable Integer id, @RequestBody EmployeeDetails employeeDetails) {
+    public EmployeeDetails update(@PathVariable Long id, @RequestBody EmployeeDetails employeeDetails) {
         employeeDetails.setEmployeeId(id);
         return employeeDetailsService.save(employeeDetails);
     }

@@ -29,9 +29,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/signin**").permitAll()
-                .antMatchers("/signin/**").permitAll()
+                .antMatchers("/users/**").permitAll()
                 .antMatchers("/employee/**").hasAnyAuthority("ADMIN","USER")
-                .antMatchers("/users/**").hasAuthority("ADMIN")
+                //.antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(new CustomAccessDeniedHandler());
