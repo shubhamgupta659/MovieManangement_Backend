@@ -24,11 +24,14 @@ CREATE TABLE `files` (
 
 CREATE TABLE `movie_details` (
   `movie_id` bigint NOT NULL AUTO_INCREMENT,
-  `movie_language` varchar(255) DEFAULT NULL,
-  `movie_name` varchar(255) DEFAULT NULL,
-  `movie_rating` varchar(255) DEFAULT NULL,
+  `movie_year` int NOT NULL,
+  `movie_language` varchar(255) NOT NULL,
+  `movie_name` varchar(255) NOT NULL,
+  `movie_rating` varchar(255) NOT NULL,
+  `created_by` varchar(255)  NOT NULL,
+  `created_date_time` datetime  NOT NULL,
   PRIMARY KEY (`movie_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `register_user_details` (
   `user_id` bigint NOT NULL AUTO_INCREMENT,

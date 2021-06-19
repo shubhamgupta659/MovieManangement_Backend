@@ -2,12 +2,17 @@ package com.vmo.backendservices.controllers;
 
 import com.vmo.backendservices.persistance.Domain.MovieDetails;
 import com.vmo.backendservices.service.MovieDetailsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -22,6 +27,9 @@ public class MovieController {
 
     @RequestMapping(value = "/insertMovie", method = RequestMethod.POST)
     public MovieDetails create(@RequestBody MovieDetails movieDetails) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        movieDetails.setCreatedBy(auth.getName());
+        movieDetails.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));
         return movieDetailsService.save(movieDetails);
     }
 
@@ -32,7 +40,10 @@ public class MovieController {
 
     @RequestMapping(value = "/updateMovie/{id}", method = RequestMethod.PUT)
     public MovieDetails update(@PathVariable Long id, @RequestBody MovieDetails movieDetails) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         movieDetails.setMovieId(id);
+        movieDetails.setCreatedBy(auth.getName());
+        movieDetails.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));
         return movieDetailsService.save(movieDetails);
     }
 

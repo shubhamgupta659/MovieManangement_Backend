@@ -3,6 +3,8 @@ package com.vmo.backendservices.service;
 import com.vmo.backendservices.persistance.Domain.MovieDetails;
 import com.vmo.backendservices.persistance.Repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,8 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
     private MovieRepository movieRepository;
 
     public List<MovieDetails> findAll() {
-        return movieRepository.findAll();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return movieRepository.findByCreatedBy(auth.getName());
     }
 
     public MovieDetails save(MovieDetails movieDetails) {
@@ -33,7 +36,8 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
     }
 
     public List<Object[]> getCountGroupByLanguage() {
-        List<Object[]> results = movieRepository.findLanguageWithCounts();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<Object[]> results = movieRepository.findLanguageWithCounts(auth.getName());
         return results;
     }
 

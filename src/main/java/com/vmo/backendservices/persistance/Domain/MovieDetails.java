@@ -3,6 +3,7 @@ package com.vmo.backendservices.persistance.Domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -23,5 +24,12 @@ public class MovieDetails {
     @Column(name = "movie_language")
     private String language;
 
+    @Column(name = "movie_year")
+    private Integer year;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "created_date_time")
+    private Timestamp createdDateTime;
 }
