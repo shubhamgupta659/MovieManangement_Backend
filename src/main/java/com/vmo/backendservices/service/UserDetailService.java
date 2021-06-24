@@ -1,6 +1,6 @@
 package com.vmo.backendservices.service;
 
-import com.vmo.backendservices.persistance.Domain.UserLoginInfo;
+import com.vmo.backendservices.persistance.Domain.UserInfo;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -10,11 +10,11 @@ public interface UserDetailService {
 
     UserDetails loadUserByUsername(String username);
 
-    List<UserLoginInfo> findAll();
+    List<UserInfo> findAll();
 
-    UserLoginInfo save(UserLoginInfo userLoginInfo);
+    UserInfo save(UserInfo userInfo);
 
-    Optional<UserLoginInfo> findOne(Long id);
+    Optional<UserInfo> findOne(Long id);
 
     void delete(Long id);
 

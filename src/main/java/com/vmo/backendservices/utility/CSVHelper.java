@@ -67,8 +67,10 @@ public class CSVHelper {
                 return "IT";
             case 2:
                 return "HR";
-            default:
+            case 3:
                 return "ACCOUNTS";
+            default:
+                return "MODERATOR";
         }
     }
 }

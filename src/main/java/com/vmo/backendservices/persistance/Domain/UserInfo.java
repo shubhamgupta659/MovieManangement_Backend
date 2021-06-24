@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "register_user_details")
-public class UserLoginInfo {
+@Table(name = "user_info")
+public class UserInfo {
 
 	@Id
 	@GeneratedValue
@@ -40,8 +40,12 @@ public class UserLoginInfo {
 	@Column(name = "user_password")
 	private String password;
 
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<UserRoleInfo> rolesInfo;
+	private Set<RoleInfo> rolesInfo;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_movies", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+	private Set<MovieInfo> movieInfo;
 
 }

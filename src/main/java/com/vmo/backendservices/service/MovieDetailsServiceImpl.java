@@ -1,6 +1,6 @@
 package com.vmo.backendservices.service;
 
-import com.vmo.backendservices.persistance.Domain.MovieDetails;
+import com.vmo.backendservices.persistance.Domain.MovieInfo;
 import com.vmo.backendservices.persistance.Repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,16 +18,16 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public List<MovieDetails> findAll() {
+    public List<MovieInfo> findAll() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return movieRepository.findByCreatedBy(auth.getName());
     }
 
-    public MovieDetails save(MovieDetails movieDetails) {
-        return movieRepository.save(movieDetails);
+    public MovieInfo save(MovieInfo movieInfo) {
+        return movieRepository.save(movieInfo);
     }
 
-    public Optional<MovieDetails> findOne(Long id) {
+    public Optional<MovieInfo> findOne(Long id) {
         return movieRepository.findById(id);
     }
 

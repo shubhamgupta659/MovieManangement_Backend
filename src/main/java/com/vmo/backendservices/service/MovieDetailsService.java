@@ -1,17 +1,17 @@
 package com.vmo.backendservices.service;
 
-import com.vmo.backendservices.persistance.Domain.MovieDetails;
+import com.vmo.backendservices.persistance.Domain.MovieInfo;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface MovieDetailsService {
 
-    List<MovieDetails> findAll();
+    List<MovieInfo> findAll();
 
-    MovieDetails save(MovieDetails movieDetails);
+    MovieInfo save(MovieInfo movieInfo);
 
-    Optional<MovieDetails> findOne(Long id);
+    Optional<MovieInfo> findOne(Long id);
 
     void delete(Long id);
 

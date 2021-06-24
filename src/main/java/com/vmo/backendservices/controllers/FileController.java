@@ -4,7 +4,6 @@ package com.vmo.backendservices.controllers;
 import com.vmo.backendservices.dto.DBFileDTO;
 import com.vmo.backendservices.dto.UploadFileResponse;
 import com.vmo.backendservices.persistance.Domain.DBFile;
-import com.vmo.backendservices.persistance.Domain.MovieDetails;
 import com.vmo.backendservices.persistance.Repository.DBFileRepository;
 import com.vmo.backendservices.service.DBFileStorageService;
 import org.slf4j.Logger;

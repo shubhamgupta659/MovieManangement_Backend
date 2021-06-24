@@ -26,6 +26,9 @@ public class DBFile {
     @Column(name = "file_data")
     private byte[] data;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MovieInfo movieInfo;
+
     public DBFile() {
     }
 

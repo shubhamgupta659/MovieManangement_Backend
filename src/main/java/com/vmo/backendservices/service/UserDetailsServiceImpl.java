@@ -1,12 +1,8 @@
 package com.vmo.backendservices.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import com.vmo.backendservices.persistance.Domain.UserRoleInfo;
-import com.vmo.backendservices.persistance.Domain.UserRoles;
+import com.vmo.backendservices.persistance.Domain.RoleInfo;
+import com.vmo.backendservices.persistance.Domain.UserInfo;
+import com.vmo.backendservices.persistance.Repository.UserRepository;
 import com.vmo.backendservices.persistance.Repository.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,63 +11,59 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vmo.backendservices.persistance.Domain.UserLoginInfo;
-import com.vmo.backendservices.persistance.Repository.UserRepository;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Transactional
 @Service(value = "userService")
-public class UserDetailsServiceImpl implements UserDetailsService,UserDetailService{
+public class UserDetailsServiceImpl implements UserDetailsService, UserDetailService {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    UserRolesRepository rolesRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	UserRolesRepository rolesRepository;
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserLoginInfo userLoginInfo = userRepository.findByUsername(username);
-		if(userLoginInfo==null) {
-			throw new UsernameNotFoundException("User Not Followed");
-		}
-		return new UserPrincipalService(userLoginInfo);
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserInfo userInfo = userRepository.findByUsername(username);
+        if (userInfo == null) {
+            throw new UsernameNotFoundException("User Not Followed");
+        }
+        return new UserPrincipalService(userInfo);
+    }
 
-	@Override
-	public List<UserLoginInfo> findAll() {
-		
-		return userRepository.findAll();
-	}
+    @Override
+    public List<UserInfo> findAll() {
 
-	@Override
-	public UserLoginInfo save(UserLoginInfo userLoginInfo) {
-		UserLoginInfo loginInfo= userRepository.save(userLoginInfo);
-		UserRoles roles = new UserRoles();
-		roles.setUserId(loginInfo.getUserId());
-		roles.setRoleId(1L);
-		//rolesRepository.save(roles);
-		Set<UserRoleInfo> userRoleInfos = new HashSet<>();
-		UserRoleInfo roleInfo = new UserRoleInfo();
-		roleInfo.setRoleId(2L);
-		roleInfo.setRoleName("USER");
-		userRoleInfos.add(roleInfo);
-		loginInfo.setRolesInfo(userRoleInfos);
-		return loginInfo;
+        return userRepository.findAll();
+    }
 
-	}
+    @Override
+    public UserInfo save(UserInfo userInfo) {
+        UserInfo loginInfo = userRepository.save(userInfo);
+        RoleInfo roles = new RoleInfo();
+        roles.setRoleId(3L);
+        roles.setRoleName("USER");
+        //rolesRepository.save(roles);
+        Set<RoleInfo> roleInfoSet = new HashSet<>();
+        roleInfoSet.add(roles);
+        loginInfo.setRolesInfo(roleInfoSet);
+        return loginInfo;
 
-	@Override
-	public Optional<UserLoginInfo> findOne(Long id) {
-		
-		return userRepository.findById(id);
-	}
+    }
 
-	@Override
-	public void delete(Long id) {
-		userRepository.deleteById(id);	
-	}
-	
-	
-	
+    @Override
+    public Optional<UserInfo> findOne(Long id) {
+
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
 
 }

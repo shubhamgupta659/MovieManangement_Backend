@@ -3,19 +3,22 @@ package com.vmo.backendservices.persistance.Domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
-@IdClass(RelationshipId.class)
 @Table(name = "users_roles")
 public class UserRoles {
 
-    @Id
-    @Column(name = "user_id")
-    private Long userId;
+    @EmbeddedId
+    UserRoleKey id;
 
-    @Id
-    @Column(name = "role_id")
-    private Long roleId;
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_Id")
+    UserInfo userInfo;
+
+    @ManyToOne
+    @MapsId("roleId")
+    @JoinColumn(name = "role_id")
+    RoleInfo roleInfo;
 }

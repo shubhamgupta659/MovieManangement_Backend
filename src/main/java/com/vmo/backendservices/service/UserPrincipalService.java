@@ -8,20 +8,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.vmo.backendservices.persistance.Domain.UserLoginInfo;
+import com.vmo.backendservices.persistance.Domain.UserInfo;
 
 public class UserPrincipalService implements UserDetails{
 
-	private UserLoginInfo userLoginDeatils;
+	private UserInfo userLoginDetails;
 	
-	public UserPrincipalService(UserLoginInfo userLoginDeatils) {
+	public UserPrincipalService(UserInfo userLoginDetails) {
 		super();
-		this.userLoginDeatils = userLoginDeatils;
+		this.userLoginDetails = userLoginDetails;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return userLoginDeatils.getRolesInfo().stream()
+		return userLoginDetails.getRolesInfo().stream()
 		.map(role -> new SimpleGrantedAuthority(role.getRoleName()))
 		.collect(Collectors.toList());
 	}
@@ -29,13 +29,13 @@ public class UserPrincipalService implements UserDetails{
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return userLoginDeatils.getPassword();
+		return userLoginDetails.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return userLoginDeatils.getUsername();
+		return userLoginDetails.getUsername();
 	}
 
 	@Override
