@@ -23,6 +23,11 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
         return movieRepository.findByCreatedBy(auth.getName());
     }
 
+    public List<MovieInfo> getLatestPicks() {
+        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return movieRepository.findTop5();
+    }
+
     public MovieInfo save(MovieInfo movieInfo) {
         return movieRepository.save(movieInfo);
     }
@@ -41,13 +46,13 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
         return results;
     }
 
-    public List<Object> searchMovie() {
-        List<Object> results = movieRepository.searchMovie();
+    public List<Object[]> searchMovie() {
+        List<Object[]> results = movieRepository.searchMovie();
         return results;
     }
 
-    public List<Object> searchMovieByKeyword(String key) {
-        List<Object> results = movieRepository.searchMovieByKeyword(key);
+    public List<Object[]> searchMovieByKeyword(String key) {
+        List<Object[]> results = movieRepository.searchMovieByKeyword(key);
         return results;
     }
 }

@@ -33,6 +33,11 @@ public class MovieController {
         return movieDetailsService.findAll();
     }
 
+    @GetMapping("/latestPicks")
+    public List<MovieInfo> getLatestPicks() {
+        return movieDetailsService.getLatestPicks();
+    }
+
     @RequestMapping(value = "/addMovie", method = RequestMethod.POST)
     public UploadFileResponse create(@RequestParam("file") MultipartFile file, @RequestParam("movieName") String movieName,
                                      @RequestParam("description") String description, @RequestParam("genre") String genre,
@@ -110,12 +115,12 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/searchByKey/", method = RequestMethod.GET)
-    public List<Object> searchMovie() {
+    public List<Object[]> searchMovie() {
         return movieDetailsService.searchMovie();
     }
 
     @RequestMapping(value = "/searchByKey/{key}", method = RequestMethod.GET)
-    public List<Object> searchMovieByKeyword(@PathVariable(value = "key") String key) {
+    public List<Object[]> searchMovieByKeyword(@PathVariable(value = "key") String key) {
         return movieDetailsService.searchMovieByKeyword(key);
     }
 }

@@ -17,11 +17,14 @@ public interface MovieRepository extends JpaRepository<MovieInfo, Long> {
     @Query("Select m.movieName from MovieInfo m where id = :movieId ")
     String findMovieById(@Param("movieId") Integer id);
 
-    @Query(value = "SELECT movie_name FROM movie_info order by movie_name ASC LIMIT 5",nativeQuery = true)
-    List<Object> searchMovie();
+    @Query(value = "SELECT * FROM movie_info order by movie_name ASC LIMIT 5",nativeQuery = true)
+    List<Object[]> searchMovie();
 
-    @Query(value = "SELECT movie_name FROM movie_info where movie_name like %:searchKey% order by movie_name ASC LIMIT 5",nativeQuery = true)
-    List<Object> searchMovieByKeyword(@Param("searchKey") String key);
+    @Query(value = "SELECT * FROM movie_info where movie_name like %:searchKey% order by movie_name ASC LIMIT 5",nativeQuery = true)
+    List<Object[]> searchMovieByKeyword(@Param("searchKey") String key);
 
     List<MovieInfo> findByCreatedBy(String createdBy);
+
+    @Query(value = "SELECT * FROM movie_info order by movie_year DESC LIMIT 5",nativeQuery = true)
+    List<MovieInfo> findTop5();
 }

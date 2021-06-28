@@ -9,6 +9,8 @@ public interface MovieDetailsService {
 
     List<MovieInfo> findAll();
 
+    List<MovieInfo> getLatestPicks();
+
     MovieInfo save(MovieInfo movieInfo);
 
     Optional<MovieInfo> findOne(Long id);
@@ -17,7 +19,7 @@ public interface MovieDetailsService {
 
     List<Object[]> getCountGroupByLanguage();
 
-    List<Object> searchMovie();
+    List<Object[]> searchMovie();
 
-    List<Object> searchMovieByKeyword(String key);
+    List<Object[]> searchMovieByKeyword(String key);
 }
