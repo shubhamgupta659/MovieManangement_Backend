@@ -31,7 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/signin**").permitAll()
                 .antMatchers("/users/**").permitAll()
                 .antMatchers("/employee/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/movies/**").hasAnyAuthority("ADMIN","MODERATOR")
+                .antMatchers("/movies/**").hasAnyAuthority("ADMIN","MODERATOR","USER")
                 .antMatchers("/file/**").hasAnyAuthority("ADMIN","MODERATOR")
                 //.antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
