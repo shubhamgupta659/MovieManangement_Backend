@@ -12,22 +12,15 @@ public class UserMovies {
     @EmbeddedId
     UserMovieKey id;
 
-    @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_Id")
-    UserInfo userInfo;
-
-    @ManyToOne
-    @MapsId("movieId")
-    @JoinColumn(name = "movie_id")
-    RoleInfo roleInfo;
-
     @Column(name = "movie_rating")
-    private Double rating;
+    private Integer rating;
 
     @Column(name = "movie_review_title")
     private String reviewTitle;
 
     @Column(name = "movie_review")
     private String review;
+
+    @Column(name = "is_movie_watch_listed")
+    private boolean isWatchListed;
 }

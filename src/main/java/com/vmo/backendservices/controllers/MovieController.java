@@ -1,8 +1,10 @@
 package com.vmo.backendservices.controllers;
 
 import com.vmo.backendservices.dto.UploadFileResponse;
+import com.vmo.backendservices.dto.UserMovieInfo;
 import com.vmo.backendservices.persistance.Domain.DBFile;
 import com.vmo.backendservices.persistance.Domain.MovieInfo;
+import com.vmo.backendservices.persistance.Domain.UserMovies;
 import com.vmo.backendservices.service.DBFileStorageService;
 import com.vmo.backendservices.service.MovieDetailsService;
 import lombok.extern.slf4j.Slf4j;
@@ -122,5 +124,15 @@ public class MovieController {
     @RequestMapping(value = "/searchByKey/{key}", method = RequestMethod.GET)
     public List<Object[]> searchMovieByKeyword(@PathVariable(value = "key") String key) {
         return movieDetailsService.searchMovieByKeyword(key);
+    }
+
+    @RequestMapping(value = "/ratingForUser/{id}", method = RequestMethod.GET)
+    public UserMovieInfo getMovieRatingForUser(@PathVariable(value = "id") Long key) {
+        return movieDetailsService.getMovieRatingForUser(key);
+    }
+
+    @RequestMapping(value = "/saveRatingForUser", method = RequestMethod.POST)
+    public UserMovies saveMovieRatingForUser(@RequestBody UserMovieInfo userMovieInfo ) {
+        return movieDetailsService.saveMovieRatingForUser(userMovieInfo);
     }
 }
