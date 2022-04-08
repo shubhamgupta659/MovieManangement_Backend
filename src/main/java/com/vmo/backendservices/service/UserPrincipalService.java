@@ -1,14 +1,12 @@
 package com.vmo.backendservices.service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
+import com.vmo.backendservices.persistance.Domain.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.vmo.backendservices.persistance.Domain.UserInfo;
 
 public class UserPrincipalService implements UserDetails{
 
@@ -35,7 +33,7 @@ public class UserPrincipalService implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return userLoginDetails.getUsername();
+		return userLoginDetails.getUserName();
 	}
 
 	@Override

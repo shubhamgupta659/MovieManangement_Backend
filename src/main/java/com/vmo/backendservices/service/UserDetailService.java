@@ -1,5 +1,6 @@
 package com.vmo.backendservices.service;
 
+import com.vmo.backendservices.dto.UserDTO;
 import com.vmo.backendservices.persistance.Domain.UserInfo;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,5 +19,6 @@ public interface UserDetailService {
 
     void delete(Long id);
 
+    UserInfo saveNewUser(UserDTO userInfo);
 
 }

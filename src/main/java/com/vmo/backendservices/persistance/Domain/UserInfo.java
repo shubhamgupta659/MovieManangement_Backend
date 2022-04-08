@@ -2,12 +2,11 @@ package com.vmo.backendservices.persistance.Domain;
 
 import lombok.Data;
 
-import java.util.Set;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -29,7 +28,15 @@ public class UserInfo {
 
 	@NotEmpty(message = "User name can not be empty")
 	@Column(name = "user_name")
-	private String username;
+	private String userName;
+
+	@NotEmpty(message = "User name can not be empty")
+	@Column(name = "user_phone")
+	private String phone;
+
+	@NotEmpty(message = "User notification mode can not be empty")
+	@Column(name = "user_notif_mode")
+	private String notification;
 
 	@NotEmpty(message = "Email can not be empty")
 	@Email(message = "Please provide a valid email id")
@@ -39,6 +46,12 @@ public class UserInfo {
 	@NotEmpty(message = "Password can not be empty")
 	@Column(name = "user_password")
 	private String password;
+
+	@Column(name = "user_send_catalog")
+	private boolean sendCatalog;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Address> addresses;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

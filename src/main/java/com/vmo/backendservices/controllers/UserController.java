@@ -1,5 +1,6 @@
 package com.vmo.backendservices.controllers;
 
+import com.vmo.backendservices.dto.UserDTO;
 import com.vmo.backendservices.persistance.Domain.UserInfo;
 import com.vmo.backendservices.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,6 @@ public class UserController {
         return userDetailService.findAll();
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public UserInfo create(@RequestBody UserInfo userInfo) {
-        return userDetailService.save(userInfo);
-    }
-
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public Optional<UserInfo> findOne(@PathVariable Long id) {
         return userDetailService.findOne(id);
@@ -39,5 +35,10 @@ public class UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable(value = "id") Long id) {
         userDetailService.delete(id);
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public UserInfo create(@RequestBody UserDTO userInfo) {
+        return userDetailService.saveNewUser(userInfo);
     }
 }

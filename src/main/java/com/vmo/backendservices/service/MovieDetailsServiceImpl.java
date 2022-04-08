@@ -1,10 +1,7 @@
 package com.vmo.backendservices.service;
 
 import com.vmo.backendservices.dto.UserMovieInfo;
-import com.vmo.backendservices.persistance.Domain.MovieInfo;
-import com.vmo.backendservices.persistance.Domain.UserInfo;
-import com.vmo.backendservices.persistance.Domain.UserMovieKey;
-import com.vmo.backendservices.persistance.Domain.UserMovies;
+import com.vmo.backendservices.persistance.Domain.*;
 import com.vmo.backendservices.persistance.Repository.MovieRepository;
 import com.vmo.backendservices.persistance.Repository.UserMoviesRepository;
 import com.vmo.backendservices.persistance.Repository.UserRepository;
@@ -12,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,7 +69,7 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
 
     public UserMovieInfo getMovieRatingForUser(Long key) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserInfo userDetail = userRepository.findByUsername(auth.getName());
+        UserInfo userDetail = userRepository.findByUserName(auth.getName());
         UserMovieKey userMovieKey = new UserMovieKey();
         userMovieKey.setMovieId(key);
         userMovieKey.setUserId(userDetail.getUserId());
