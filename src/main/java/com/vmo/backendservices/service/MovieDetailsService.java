@@ -1,5 +1,6 @@
 package com.vmo.backendservices.service;
 
+import com.vmo.backendservices.dto.MovieInfoDTO;
 import com.vmo.backendservices.dto.UserMovieInfo;
 import com.vmo.backendservices.persistance.Domain.MovieInfo;
 import com.vmo.backendservices.persistance.Domain.UserMovies;
@@ -11,7 +12,7 @@ public interface MovieDetailsService {
 
     List<MovieInfo> findAll();
 
-    List<MovieInfo> getLatestPicks();
+    List<MovieInfoDTO> getLatestPicks(String username);
 
     MovieInfo save(MovieInfo movieInfo);
 

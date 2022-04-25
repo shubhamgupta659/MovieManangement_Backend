@@ -1,5 +1,6 @@
 package com.vmo.backendservices.controllers;
 
+import com.vmo.backendservices.dto.MovieInfoDTO;
 import com.vmo.backendservices.dto.UploadFileResponse;
 import com.vmo.backendservices.dto.UserMovieInfo;
 import com.vmo.backendservices.persistance.Domain.DBFile;
@@ -35,9 +36,9 @@ public class MovieController {
         return movieDetailsService.findAll();
     }
 
-    @GetMapping("/latestPicks")
-    public List<MovieInfo> getLatestPicks() {
-        return movieDetailsService.getLatestPicks();
+    @GetMapping("/latestPicks/{username}")
+    public List<MovieInfoDTO> getLatestPicks(@PathVariable(value = "username") String username) {
+        return movieDetailsService.getLatestPicks(username);
     }
 
     @RequestMapping(value = "/addMovie", method = RequestMethod.POST)
