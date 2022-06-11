@@ -41,6 +41,11 @@ public class MovieController {
         return movieDetailsService.getLatestPicks(username);
     }
 
+    @GetMapping("/popularPicks/{username}")
+    public List<MovieInfoDTO> getPopularPicks(@PathVariable(value = "username") String username) {
+        return movieDetailsService.getPopularPicks(username);
+    }
+
     @RequestMapping(value = "/addMovie", method = RequestMethod.POST)
     public UploadFileResponse create(@RequestParam("file") MultipartFile file, @RequestParam("movieName") String movieName,
                                      @RequestParam("description") String description, @RequestParam("genre") String genre,

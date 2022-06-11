@@ -77,6 +77,42 @@ public class MovieDetailsServiceImpl implements MovieDetailsService {
 
     }
 
+    public List<MovieInfoDTO> getPopularPicks(String username) {
+        List<MovieInfoDTO> movieInfoDTOS = new ArrayList<>();
+        movieRepository.findTop5PopularPicksforUser(username).stream().forEach(e->{
+            Arrays.stream(e).forEach(System.out::print);
+            MovieInfoDTO movieInfoDTO = new MovieInfoDTO();
+            BigInteger bigInteger = (BigInteger)e[0];
+            BigInteger bigInteger1 = (BigInteger)e[9];
+            movieInfoDTO.setMovieId(bigInteger.longValue());
+            movieInfoDTO.setMovieName((String)e[7]);
+            movieInfoDTO.setDescription((String)e[3]);
+            movieInfoDTO.setGenre((String)e[5]);
+            movieInfoDTO.setDirector((String)e[4]);
+            movieInfoDTO.setLanguage((String)e[6]);
+            movieInfoDTO.setYear((Integer)e[8]);
+            movieInfoDTO.setCreatedBy((String)e[1]);
+            movieInfoDTO.setCreatedDateTime((Timestamp)e[2]);
+            List<DBFile> dbFiles = new ArrayList<>();
+            DBFile dbFile = new DBFile();
+            dbFile.setId(bigInteger1.longValue());
+            dbFile.setData((byte[])e[10]);
+            dbFile.setFileName((String)e[11]);
+            dbFile.setFileType((String)e[12]);
+            dbFile.setMovieInfo(null);
+            dbFiles.add(dbFile);
+            movieInfoDTO.setDbFiles(dbFiles);
+            BigDecimal bigDecimal = (BigDecimal) e[15];
+            BigDecimal bi = new BigDecimal("1");
+            boolean bool = bigDecimal.equals(bi) ? true: false;
+            movieInfoDTO.setMovieWatchListed(bool);
+            movieInfoDTOS.add(movieInfoDTO);
+        });
+        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return movieInfoDTOS;
+
+    }
+
     public MovieInfo save(MovieInfo movieInfo) {
         return movieRepository.save(movieInfo);
     }

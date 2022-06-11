@@ -14,6 +14,8 @@ public interface MovieDetailsService {
 
     List<MovieInfoDTO> getLatestPicks(String username);
 
+    List<MovieInfoDTO> getPopularPicks(String username);
+
     MovieInfo save(MovieInfo movieInfo);
 
     Optional<MovieInfo> findOne(Long id);
